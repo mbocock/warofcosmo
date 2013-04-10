@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
+import java.util.ArrayList;
 import sun.audio.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -20,10 +21,12 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 	private Image bgimg;
         private Timer time;
         private Player p;
+        private ArrayList weaps;
 	
 	// contructor method
 	public Board(){
-		ImageIcon i = new ImageIcon(getClass().getResource("/bg1.png"));
+                weaps = new ArrayList();
+		ImageIcon i = new ImageIcon(getClass().getResource("/map.png"));
 		bgimg = i.getImage();
                 
                 addKeyListener(this);
@@ -59,6 +62,28 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 		Graphics2D g2d = (Graphics2D) g;
                 g2d.drawImage(bgimg,0,0,null);
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
+                
+                for (int i = 0 ; i < weaps.size(); i++){
+			AbstractWeaponn weap = ((AbstractWeaponn)weaps.get(i));
+			g2d.drawImage(weap.getImage(),weap.getX(),weap.getY(),null);
+			
+			if(weap.getX() >= p.getX()+weap.getDistance()){
+				weaps.remove(weap);
+			}
+                        if(weap.getX() <= p.getX()-weap.getDistance()){
+				weaps.remove(weap);
+			}
+			
+			/*for(int j=0; j < enemies.size();j++){
+				Enemy e = enemies.get(j);
+				if(weap.getBounds().intersects(e.getBounds())){
+					//enemy at j was hit by current weapon, remove both bullet and enemy
+					weaps.remove(weap);
+					enemies.remove(e);
+				}
+			}*/
+			
+		}
 
         }
 
@@ -73,5 +98,9 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		p.keyReleased(e);
+	}
+        
+        public void addBullit(AbstractWeaponn b) {
+		weaps.add(b);
 	}
 }

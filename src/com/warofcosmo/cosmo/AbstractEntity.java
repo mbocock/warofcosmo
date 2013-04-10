@@ -116,4 +116,14 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public Board getBoard() {
 		return _board;
 	}
+        
+        @Override
+	public int getDirection() {
+		return _direction;
+	}
+        
+        @Override
+	public void setDirection(int dir) {
+		_direction = dir;
+	}
 }

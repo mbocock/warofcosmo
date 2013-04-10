@@ -12,6 +12,7 @@ public interface IEntity {
 	public int getY();
 	public int getHealth();
 	public int getMaxHealth();
+        public int getDirection();
 	public int getDx();
 	public int getDy();
 	public Image getImage();
@@ -23,5 +24,6 @@ public interface IEntity {
 	public void setDx(int dx);
 	public void setDy(int dy);
 	public void setGFX(Image i);
+	public void setDirection(int dir);
 	
 }

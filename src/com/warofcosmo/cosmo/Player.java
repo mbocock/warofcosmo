@@ -20,14 +20,14 @@ public class Player extends AbstractEntity implements IPlayer{
 		//AbstractKeyEvent kleft = new KeyLeft(this);
 		//AbstractKeyEvent kup = new KeyUp(this);
 		//AbstractKeyEvent kdown = new KeyDown(this);
-                  //AbstractKeyEvent kspace = new KeySpace(this);
+                AbstractKeyEvent kspace = new KeySpace(this);
 					
 				  
 		addKeyEvent(kright);
 		//addKeyEvent(kleft);
 		//addKeyEvent(kup);
 		//addKeyEvent(kdown);
-		//addKeyEvent(kspace);
+		addKeyEvent(kspace);
 
 		
 	}
