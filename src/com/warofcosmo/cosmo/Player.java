@@ -9,7 +9,10 @@ import java.util.ArrayList;
 public class Player extends AbstractEntity implements IPlayer{
 	
 	private ArrayList<IKeyEvent> keyevents = new ArrayList();
-	
+	private int xMax = 100;
+    private int yMax = 20;
+    private int yMin = 60;
+    private int xMin = 20;
 	public Player(Board brd) {
 		super(brd);
 		
@@ -34,7 +37,20 @@ public class Player extends AbstractEntity implements IPlayer{
 
 	@Override
 	public void move() {
-		_x = _x+_dx;
+        //Limits
+        int _bWidth = _board.getSize().width;
+        int _bHeight = _board.getSize().height;
+        if(_dx>0 && getX()>=(_bWidth-xMax))
+            _dx=0;
+        if(_dy<0 && getY()<=yMax)
+            _dy=0;
+        if(_dy>0 && getY()>=(_bHeight-yMin))
+            _dy=0;        
+        if(_dx<0 && getX()<=xMin)
+            _dx=0;
+        //Limits
+        
+        _x = _x+_dx;
 		_y = _y+_dy;
 		
 	}	

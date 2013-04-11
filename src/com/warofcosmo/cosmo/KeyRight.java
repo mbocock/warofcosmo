@@ -15,8 +15,7 @@ public class KeyRight extends AbstractKeyEvent{
 	@Override
 	 public void pressAction(int key) {
 		if(key == KeyEvent.VK_RIGHT){
-			p.setDx(p.getSpeed());
-		 }
+          	p.setDx(p.getSpeed());}
 	 }
 	 
 	@Override
