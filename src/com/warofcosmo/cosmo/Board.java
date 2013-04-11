@@ -56,8 +56,8 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 		AudioPlayer.player.start(bgm);
 	}
 	
-	public void stopBGM(){
-		AudioPlayer.player.stop();
+	public void stopBGM(AudioStream bgm){
+		AudioPlayer.player.stop(bgm);
 	}
 	
 
