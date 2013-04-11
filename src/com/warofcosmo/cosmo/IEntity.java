@@ -17,11 +17,11 @@ public interface IEntity {
 	public Image getImage();
 	public Image getGFX();
 	public Board getBoard();
-	
+	public int getDirection(); 
 	public void setX(int x);
 	public void setY(int y);
 	public void setDx(int dx);
 	public void setDy(int dy);
 	public void setGFX(Image i);
-	
+	public void setDirection(int dir); 
 }
