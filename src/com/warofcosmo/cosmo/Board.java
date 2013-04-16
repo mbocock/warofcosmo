@@ -23,34 +23,43 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         protected AudioStream as;
         private int level;
 	private int size;
-        private ArrayList weaps; 
+        private ArrayList weaps;
+        private ArrayList LevelArr;
+        private int startX;
+        private int startY;
 	
 	// contructor method
 	public Board(){
             
-                level=1;
-
-                if(level==1){
+                level=0;
+                LevelArr = new ArrayList();
+                // TESTING
                 l=new LevelEntity("bg2.png","project4.wav",1,3000,this);
-                }else{
-                l=new LevelEntity("mountains1.png","front-line.wav",1,3000,this);    
-                }
+                LevelArr.add(l);
+                l=new LevelEntity("mountains1.png","front-line.wav",1,3000,this);
+                LevelArr.add(l);
+
+                l=(LevelEntity) LevelArr.get(level);
+
                 weaps = new ArrayList();
                 bgimg=l.getBG();
                 as=l.getBGM();
                 size=bgimg.getWidth(this);
                 //AudioPlayer.player.start(as);
 	      
-	       playBGM(as);	
+	        playBGM(as);	
                
-	       addKeyListener(this);
+	        addKeyListener(this);
                 setFocusable(true);
                 setFocusTraversalKeysEnabled(false); 
                 
                 p = new Player(this);
                 
+                startX=p.getX();
+                startY=p.getY();
+                
                 time = new Timer(5,this);
-	       time.start();
+	        time.start();
 	}
 	
 	public void playBGM(AudioStream bgm){
@@ -60,6 +69,18 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 	public void stopBGM(AudioStream bgm){
 		AudioPlayer.player.stop(bgm);
 	}
+        
+        public void LoadNext(){
+            level++;
+            System.out.println(level);
+            l=(LevelEntity) LevelArr.get(level);
+            bgimg=l.getBG();
+            as=l.getBGM();
+            playBGM(as);
+            size=bgimg.getWidth(this);
+            p.setX(startX);
+            p.setY(startY);
+        }
 	
 
 	@Override

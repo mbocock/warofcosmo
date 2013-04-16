@@ -54,7 +54,8 @@ public class LevelEntity {
 		if(_dx- _brd.getSize().width<=-_length){
 			_speed=0;
 			_brd.stopBGM(as);
-			_brd.playBGM(bs);
+			//_brd.playBGM(bs);
+                        _brd.LoadNext();
 		}
     }
     public int getX(){
