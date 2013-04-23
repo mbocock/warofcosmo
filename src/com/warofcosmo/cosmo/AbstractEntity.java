@@ -13,7 +13,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int _y;
 	protected int _width;
 	protected int _height;
-	protected int _speed=1;
+	protected int _speed;
 	protected int _direction;
 	protected int _dy;
 	protected int _dx;

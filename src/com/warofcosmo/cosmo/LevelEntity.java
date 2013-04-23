@@ -36,7 +36,8 @@ public class LevelEntity {
 		LoadBGM(_bgm);
         
 		Enemy E = new Enemy(brd,1,"s2",".png",600,400);
-		_brd.addEnemy(new Enemy(_brd,1,"s2",".png",600,400));
+		_brd.addEnemy(new Enemy(_brd,1,"er",".png",600,400));
+		_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,300));
         
     }
     

@@ -44,7 +44,6 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 
                 l=(LevelEntity) LevelArr.get(level);
                 
-                Enemies.add(new Enemy(this,1,"s2",".png",500,400));
                 
                 bgimg=l.getBG();
                 as=l.getBGM();
