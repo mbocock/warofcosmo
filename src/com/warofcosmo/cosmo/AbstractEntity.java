@@ -22,24 +22,28 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	private int maxhealth;
         protected ArrayList<ImageIcon> _staticimg;
 	
-	public AbstractEntity(Board brd){
+	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
 		
 		_shipimg = new ArrayList<ImageIcon>();
+                _x=startx;
+                _y=starty;
 		
                 ImageIcon i = new ImageIcon(getClass().getResource("/s0.png"));
                 _gfx = i.getImage();
 
 
-		fillCycleImages();
+		fillCycleImages(imgname,imgextension,imgcount);
 		_board = brd;
 	}
 	
-	protected void fillCycleImages(){
-		//for(int i = 0; i < 3; i++){
-			_shipimg.add(new ImageIcon(getClass().getResource("/s0.png")));
-                        _shipimg.add(new ImageIcon(getClass().getResource("/su.png")));
-                        _shipimg.add(new ImageIcon(getClass().getResource("/sd.png")));
-		//}
+	protected void fillCycleImages(String imgname,String imgextension,int imgcount){
+           
+		for(int i = 0; i < imgcount; i++){
+			_shipimg.add(new ImageIcon(getClass().getResource("/"+ imgname + i + imgextension)));
+		}
+                
+                        //starting neutral image usualy 0 in array
+                _gfx = _shipimg.get(0).getImage();
 	}
         
    

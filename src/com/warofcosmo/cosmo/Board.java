@@ -24,6 +24,7 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         private int level;
 	private int size;
         private ArrayList weaps;
+        private ArrayList Enemies;
         private ArrayList LevelArr;
         private int startX;
         private int startY;
@@ -42,6 +43,10 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 l=(LevelEntity) LevelArr.get(level);
 
                 weaps = new ArrayList();
+                Enemies = new ArrayList();
+                
+                Enemies.add(new Enemy(this,1,"s2",".png",500,400));
+                
                 bgimg=l.getBG();
                 as=l.getBGM();
                 size=bgimg.getWidth(this);
@@ -57,11 +62,14 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 
                 startX=p.getX();
                 startY=p.getY();
-                
+
                 time = new Timer(5,this);
 	        time.start();
+           
 	}
 	
+ 
+        
 	public void playBGM(AudioStream bgm){
 		AudioPlayer.player.start(bgm);
 	}
@@ -87,6 +95,12 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
                 p.move();
                 l.Move();
+                
+                for(int i=0; i<Enemies.size();i++){
+                    Enemy en=((Enemy)Enemies.get(i));
+                    en.move();
+                }
+                
 		repaint();
 	}
         
@@ -97,6 +111,11 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 g2d.drawImage(bgimg,l.getX(),0,null);
 		g2d.drawImage(bgimg,size-l.getX(),0,null);
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
+                
+                for(int i=0; i<Enemies.size();i++){
+                    Enemy en=((Enemy)Enemies.get(i));
+                    g2d.drawImage(en.getImage(),en.getX(),en.getY(),null);
+                }
                 
                 for (int i = 0 ; i < weaps.size(); i++){
                     AbstractWeaponn weap = ((AbstractWeaponn)weaps.get(i));
@@ -136,6 +155,12 @@ enemies.remove(e);
 	}
 
         public void addBullit(AbstractWeaponn b) {
+             System.out.println(b);
             weaps.add(b);
         } 
+        
+        public void addEnemy(AbstractEntity e) {
+            Enemies.add(e);
+        }
+
 }

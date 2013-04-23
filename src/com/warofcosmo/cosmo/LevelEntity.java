@@ -34,6 +34,11 @@ public class LevelEntity {
         _length=ilength;
         _brd=brd;
         LoadBGM(_bgm);
+        
+       // Enemy E = new Enemy(brd,1,"s2",".png",600,400);
+        
+        //_brd.addEnemy(new Enemy(_brd,1,"s2",".png",600,400));
+        
     }
     
     private void LoadBGM(String ibgm){
