@@ -27,17 +27,16 @@ public class LevelEntity {
     private Board _brd;
     
     public LevelEntity(String Ibg,String Ibgm,int ispeed,int ilength,Board brd){
-        ImageIcon i = new ImageIcon(getClass().getResource("/"+Ibg));
-        _bgfx= i.getImage(); 
-        _bgm=Ibgm;
-        _speed=ispeed;
-        _length=ilength;
-        _brd=brd;
-        LoadBGM(_bgm);
+		ImageIcon i = new ImageIcon(getClass().getResource("/"+Ibg));
+		_bgfx= i.getImage();
+		_bgm=Ibgm;
+		_speed=ispeed;
+		_length=ilength;
+		_brd=brd;
+		LoadBGM(_bgm);
         
-       // Enemy E = new Enemy(brd,1,"s2",".png",600,400);
-        
-        //_brd.addEnemy(new Enemy(_brd,1,"s2",".png",600,400));
+		Enemy E = new Enemy(brd,1,"s2",".png",600,400);
+		_brd.addEnemy(new Enemy(_brd,1,"s2",".png",600,400));
         
     }
     
