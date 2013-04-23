@@ -34,6 +34,8 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             
                 level=0;
                 LevelArr = new ArrayList();
+				weaps = new ArrayList();
+                Enemies = new ArrayList();
                 // TESTING
                 l=new LevelEntity("bg2.png","project4.wav",1,3000,this);
                 LevelArr.add(l);
@@ -41,9 +43,6 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 LevelArr.add(l);
 
                 l=(LevelEntity) LevelArr.get(level);
-
-                weaps = new ArrayList();
-                Enemies = new ArrayList();
                 
                 Enemies.add(new Enemy(this,1,"s2",".png",500,400));
                 
@@ -154,13 +153,15 @@ enemies.remove(e);
 		p.keyReleased(e);
 	}
 
-        public void addBullit(AbstractWeaponn b) {
-             System.out.println(b);
-            weaps.add(b);
-        } 
-        
-        public void addEnemy(AbstractEntity e) {
-            Enemies.add(e);
-        }
+	public void addBullit(AbstractWeaponn b) {
+		System.out.println(b);
+		weaps.add(b);
+	}
+	
+	public void addEnemy(AbstractEntity e) {
+		//Enemies ArrayList had not been initialized at this point when you try to call this function
+		//from LevelEntity, fix was just initialize your ArrayList before instantiating any LevelEntity
+		Enemies.add(e);
+	}
 
 }
