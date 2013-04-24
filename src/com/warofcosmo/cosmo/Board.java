@@ -3,11 +3,13 @@ package com.warofcosmo.cosmo;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import sun.audio.*;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -34,16 +36,24 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             
                 level=0;
                 LevelArr = new ArrayList();
-				weaps = new ArrayList();
+                weaps = new ArrayList();
                 Enemies = new ArrayList();
-                // TESTING
-                l=new LevelEntity("bg2.png","project4.wav",1,3000,this);
-                LevelArr.add(l);
-                l=new LevelEntity("mountains1.png","front-line.wav",1,3000,this);
-                LevelArr.add(l);
-
-                l=(LevelEntity) LevelArr.get(level);
                 
+                // TESTING
+                //l=new LevelEntity("bg2.png","project4.wav",0,3000,this);
+                //LevelArr.add(l);
+                
+                String []a={"bg2.png","project4.wav","0","3000"};
+                String []b={"mountains1.png","front-line.wav","1","3000"};
+                
+                LevelArr.add(a);
+                LevelArr.add(a);
+                
+                String []LArray=((String [])LevelArr.get(0));
+                l=new LevelEntity(LArray,this);
+                //LevelArr.add(l);
+
+
                 
                 bgimg=l.getBG();
                 as=l.getBGM();
@@ -125,15 +135,16 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                     if(weap.getX() <= p.getX()-weap.getDistance()){
                         weaps.remove(weap);
                     }
-
-/*for(int j=0; j < enemies.size();j++){
-Enemy e = enemies.get(j);
-if(weap.getBounds().intersects(e.getBounds())){
-//enemy at j was hit by current weapon, remove both bullet and enemy
-weaps.remove(weap);
-enemies.remove(e);
-}
-}*/
+                            System.out.println(Enemies.size());
+                    for(int j=0; j < Enemies.size();j++){
+				Enemy e = ((Enemy)Enemies.get(j));
+				if(weap.getBounds().intersects(e.getBounds())){
+					//enemy at j was hit by current weapon, remove both bullet and enemy
+					weaps.remove(weap);
+					Enemies.remove(e);
+                                        System.out.println(Enemies.size());
+				}
+			}
 
                     }
 
@@ -152,8 +163,7 @@ enemies.remove(e);
 		p.keyReleased(e);
 	}
 
-	public void addBullit(AbstractWeaponn b) {
-		System.out.println(b);
+	public void addBullit(AbstractWeaponn b) {;
 		weaps.add(b);
 	}
 	

@@ -14,7 +14,7 @@ public class Player extends AbstractEntity implements IPlayer{
     private int yMin = 60;
     private int xMin = 20;
 	public Player(Board brd) {
-		super(brd,3,"s",".png",100,400);
+		super(brd,3,"s",".png",100,400,32,16);
 		
 		//_x=100;
 		//_y=400;

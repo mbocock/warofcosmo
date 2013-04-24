@@ -26,18 +26,23 @@ public class LevelEntity {
     private AudioStream bs;
     private Board _brd;
     
-    public LevelEntity(String Ibg,String Ibgm,int ispeed,int ilength,Board brd){
-		ImageIcon i = new ImageIcon(getClass().getResource("/"+Ibg));
+    public LevelEntity(String Array[],Board brd){
+        
+       // String Ibg,String Ibgm,int ispeed,int ilength,Board brd)
+        
+        
+		ImageIcon i = new ImageIcon(getClass().getResource("/"+Array[0]));
 		_bgfx= i.getImage();
-		_bgm=Ibgm;
-		_speed=ispeed;
-		_length=ilength;
+		_bgm=Array[1];
+		_speed= Integer.parseInt(Array[2]);
+		_length= Integer.parseInt(Array[3]);
 		_brd=brd;
 		LoadBGM(_bgm);
         
-		Enemy E = new Enemy(brd,1,"s2",".png",600,400);
-		_brd.addEnemy(new Enemy(_brd,1,"er",".png",600,400));
-		_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,300));
+		//Enemy E = new Enemy(brd,1,"s2",".png",600,400);
+		_brd.addEnemy(new Enemy(_brd,1,"er",".png",600,400,96,45));
+		_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,300,32,16));
+                _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,600,32,16));
         
     }
     

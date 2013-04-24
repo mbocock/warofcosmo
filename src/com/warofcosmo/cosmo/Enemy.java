@@ -1,13 +1,16 @@
 package com.warofcosmo.cosmo;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
 public class Enemy extends AbstractEntity{
 	
 
-	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty) {
-		super(brd,imgcount,imgname,imgextension,startx,starty);
-                _speed=-1;
+	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,int width,int height) {
+		super(brd,imgcount,imgname,imgextension,startx,starty,width,height);
+                _speed=0;
+                _width=width;
+                _height=height;
 	}
 
 	@Override
