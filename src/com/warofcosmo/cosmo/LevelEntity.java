@@ -69,10 +69,10 @@ public class LevelEntity {
                 
                 if(_dx == -300){
                      _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400,96,45));
-                     //_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300,32,16));
-                     //_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,600,32,16));
+                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300,32,16));
+                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,600,32,16));
                 }
-                /*
+               
                 if(_dx == -800){
                      _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,200,32,16));
                      _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,700,32,16));
@@ -81,7 +81,7 @@ public class LevelEntity {
                      _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400,96,45));
                      _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,300,96,45));
                      _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,600,96,45));
-                }*/
+                }
     }
     public int getX(){
         return _dx;

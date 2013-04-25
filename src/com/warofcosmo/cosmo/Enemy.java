@@ -30,15 +30,15 @@ public class Enemy extends AbstractEntity{
             System.out.println(_y);
             
             _x = _x+_speed;
-           _y = _y + dy;
-;
+          // _y = _y + dy;
+/*
             if(_startY+100 > _y){
               dy=-dir;
           }
             if(_startY-100 < _y){
               dy=dir;
           }
-		
+*/		
 	}	
 	
 	
