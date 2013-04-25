@@ -43,7 +43,7 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 //l=new LevelEntity("bg2.png","project4.wav",0,3000,this);
                 //LevelArr.add(l);
                 
-                String []a={"bg2.png","project4.wav","0","3000"};
+                String []a={"bg2.png","project4.wav","1","3000"};
                 String []b={"mountains1.png","front-line.wav","1","3000"};
                 
                 LevelArr.add(a);
@@ -93,7 +93,7 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             bgimg=l.getBG();
             as=l.getBGM();
             playBGM(as);
-            size=bgimg.getWidth(this);
+            size=bgimg.getWidth(null);
             p.setX(startX);
             p.setY(startY);
         }
@@ -135,7 +135,6 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                     if(weap.getX() <= p.getX()-weap.getDistance()){
                         weaps.remove(weap);
                     }
-                            System.out.println(Enemies.size());
                     for(int j=0; j < Enemies.size();j++){
 				Enemy e = ((Enemy)Enemies.get(j));
 				if(weap.getBounds().intersects(e.getBounds())){

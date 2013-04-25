@@ -16,7 +16,7 @@ import sun.audio.AudioStream;
  */
 public class LevelEntity {
     private Image _bgfx;
-    private int _speed;
+    private int _speed=-1;
     private int _length;
     private int _frlength=920;
     private int _dx=0;
@@ -40,9 +40,6 @@ public class LevelEntity {
 		LoadBGM(_bgm);
         
 		//Enemy E = new Enemy(brd,1,"s2",".png",600,400);
-		_brd.addEnemy(new Enemy(_brd,1,"er",".png",600,400,96,45));
-		_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,300,32,16));
-                _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",600,600,32,16));
         
     }
     
@@ -61,12 +58,30 @@ public class LevelEntity {
     }
     public void Move(){
         _dx=_dx-_speed;
+         int px=_brd.getSize().width;
+                    
 		if(_dx- _brd.getSize().width<=-_length){
 			_speed=0;
 			_brd.stopBGM(as);
 			//_brd.playBGM(bs);
-                        _brd.LoadNext();
+                       // _brd.LoadNext();
 		}
+                
+                if(_dx == -300){
+                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400,96,45));
+                     //_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300,32,16));
+                     //_brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,600,32,16));
+                }
+                /*
+                if(_dx == -800){
+                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,200,32,16));
+                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,700,32,16));
+                }
+                if(_dx == -1000){
+                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400,96,45));
+                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,300,96,45));
+                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,600,96,45));
+                }*/
     }
     public int getX(){
         return _dx;
