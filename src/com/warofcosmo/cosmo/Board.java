@@ -1,25 +1,24 @@
 package com.warofcosmo.cosmo;
 
+import com.warofcosmo.cosmo.levelpackage.level1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import sun.audio.*;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
 
-public class Board extends JPanel implements ActionListener, KeyListener {
+public class Board extends JPanel implements Runnable, KeyListener {
 	
         private Image bgimg;
-        private Timer time;
         private Player p;
-        private LevelEntity l;
+        private level1 l;
         protected AudioStream as;
         private int level;
 	private int size;
@@ -34,23 +33,18 @@ public class Board extends JPanel implements ActionListener, KeyListener {
             
                 level=0;
                 LevelArr = new ArrayList();
-				weaps = new ArrayList();
+                weaps = new ArrayList();
                 Enemies = new ArrayList();
-                // TESTING
-                l=new LevelEntity("bg2.png","project4.wav",1,3000,this);
-                LevelArr.add(l);
-                l=new LevelEntity("mountains1.png","front-line.wav",1,3000,this);
-                LevelArr.add(l);
-
-                l=(LevelEntity) LevelArr.get(level);
                 
+                // TESTING
+                l=new level1(this);
                 
                 bgimg=l.getBG();
-                as=l.getBGM();
+                //as=l.getBGM();
                 size=bgimg.getWidth(this);
                 //AudioPlayer.player.start(as);
 	      
-	        playBGM(as);	
+	        //playBGM(as);	
                
 	        addKeyListener(this);
                 setFocusable(true);
@@ -61,8 +55,10 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                 startX=p.getX();
                 startY=p.getY();
 
-                time = new Timer(5,this);
-	        time.start();
+                //time = new Timer(5,this);
+	        //time.start();
+                Thread mainthread=new Thread(this);
+                mainthread.start();
            
 	}
 	
@@ -79,27 +75,36 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         public void LoadNext(){
             level++;
             System.out.println(level);
-            l=(LevelEntity) LevelArr.get(level);
+            l=(level1) LevelArr.get(level);
             bgimg=l.getBG();
             as=l.getBGM();
             playBGM(as);
-            size=bgimg.getWidth(this);
+            size=bgimg.getWidth(null);
             p.setX(startX);
             p.setY(startY);
         }
 	
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-                p.move();
-                l.Move();
+	public void run() {
+            
+            while(true){
+                try{
+                    p.move();
+                    l.Move();
                 
-                for(int i=0; i<Enemies.size();i++){
-                    Enemy en=((Enemy)Enemies.get(i));
-                    en.move();
+                    for(int i=0; i<Enemies.size();i++){
+                        Enemy en=((Enemy)Enemies.get(i));
+                        en.move();
+                    }
+                
+                    repaint();
+                    Thread.sleep(5);
                 }
+                catch(Exception ignore){
                 
-		repaint();
+                }
+            }
 	}
         
         @Override
@@ -107,7 +112,6 @@ public class Board extends JPanel implements ActionListener, KeyListener {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
                 g2d.drawImage(bgimg,l.getX(),0,null);
-		g2d.drawImage(bgimg,size-l.getX(),0,null);
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
                 
                 for(int i=0; i<Enemies.size();i++){
@@ -125,15 +129,15 @@ public class Board extends JPanel implements ActionListener, KeyListener {
                     if(weap.getX() <= p.getX()-weap.getDistance()){
                         weaps.remove(weap);
                     }
-
-/*for(int j=0; j < enemies.size();j++){
-Enemy e = enemies.get(j);
-if(weap.getBounds().intersects(e.getBounds())){
-//enemy at j was hit by current weapon, remove both bullet and enemy
-weaps.remove(weap);
-enemies.remove(e);
-}
-}*/
+                    for(int j=0; j < Enemies.size();j++){
+				Enemy e = ((Enemy)Enemies.get(j));
+				if(weap.getBounds().intersects(e.getBounds())){
+					//enemy at j was hit by current weapon, remove both bullet and enemy
+					weaps.remove(weap);
+					Enemies.remove(e);
+                                        System.out.println(Enemies.size());
+				}
+			}
 
                     }
 
@@ -152,8 +156,7 @@ enemies.remove(e);
 		p.keyReleased(e);
 	}
 
-	public void addBullit(AbstractWeaponn b) {
-		System.out.println(b);
+	public void addBullit(AbstractWeaponn b) {;
 		weaps.add(b);
 	}
 	

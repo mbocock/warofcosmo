@@ -1,6 +1,7 @@
 package com.warofcosmo.cosmo;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -22,7 +23,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	private int maxhealth;
         protected ArrayList<ImageIcon> _staticimg;
 	
-	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
+	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,int width,int height){
 		
 		_shipimg = new ArrayList<ImageIcon>();
                 _x=startx;
@@ -46,6 +47,9 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 _gfx = _shipimg.get(0).getImage();
 	}
         
+        public Rectangle getBounds() {
+		return new Rectangle(_x, _y, _width, _height);
+	}
    
 	
 	@Override
