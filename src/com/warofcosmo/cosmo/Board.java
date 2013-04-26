@@ -27,10 +27,12 @@ public class Board extends JPanel implements Runnable, KeyListener {
         private ArrayList LevelArr;
         private int startX;
         private int startY;
+        private int BWidth=5020;
+        private int BHeight=920;
 	
 	// contructor method
 	public Board(){
-            
+                 
                 level=0;
                 LevelArr = new ArrayList();
                 weaps = new ArrayList();
@@ -40,11 +42,11 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 l=new level1(this);
                 
                 bgimg=l.getBG();
-                //as=l.getBGM();
+                as=l.getBGM();
                 size=bgimg.getWidth(this);
-                //AudioPlayer.player.start(as);
+                AudioPlayer.player.start(as);
 	      
-	        //playBGM(as);	
+	        playBGM(as);	
                
 	        addKeyListener(this);
                 setFocusable(true);
@@ -59,7 +61,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 	        //time.start();
                 Thread mainthread=new Thread(this);
                 mainthread.start();
-           
+           System.out.println(this.getWidth());
 	}
 	
  
@@ -100,6 +102,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 
                     repaint();
                     Thread.sleep(5);
+                    
                 }
                 catch(Exception ignore){
                 

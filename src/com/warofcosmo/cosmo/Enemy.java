@@ -22,15 +22,9 @@ public class Enemy extends AbstractEntity{
 
 	@Override
 	public void move() {
-          
-          
-          
             
-
-            System.out.println(_y);
-            
-            _x = _x+_speed;
-          // _y = _y + dy;
+          _x = _x+_speed;
+          _y = _y + dy;
 /*
             if(_startY+100 > _y){
               dy=-dir;

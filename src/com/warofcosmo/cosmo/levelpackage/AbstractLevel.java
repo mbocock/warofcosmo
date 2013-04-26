@@ -17,17 +17,18 @@ import sun.audio.AudioStream;
  */
 public abstract class AbstractLevel implements ILevel{
     private Image _bgfx;
-    private int _length;
+    protected int _length;
     protected int _dx;
     protected int _dy;
     private String _bgm;
     private AudioStream as;
     private AudioStream bs;
-    private Board _brd;
+    protected Board _brd;
     
     public AbstractLevel(Board brd,String ibg,String ibgm,int istartX,int istartY){
 		ImageIcon i = new ImageIcon(getClass().getResource("/"+ibg));
 		_bgfx= i.getImage();
+                _length=_bgfx.getWidth(null);
 		_bgm=ibgm;
 		_brd=brd;
 		LoadBGM(_bgm);   

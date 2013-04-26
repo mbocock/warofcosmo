@@ -12,7 +12,7 @@ public class Frame extends JFrame {
 		add(new Board());
 		setTitle("War of Cosmos");
 		setSize(920, 820); 
-                  setResizable( false );
+                setResizable( false );
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		setLocationRelativeTo(null);
