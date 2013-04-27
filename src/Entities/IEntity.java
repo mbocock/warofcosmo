@@ -1,5 +1,6 @@
-package com.warofcosmo.cosmo;
+package Entities;
 
+import com.warofcosmo.cosmo.Board;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public interface IEntity {
 	public int getDx();
 	public int getDy();
 	public Image getImage();
-	public Image getGFX();
+        public Image getImage(int img);
 	public Board getBoard();
 	public int getDirection(); 
 	public void setX(int x);

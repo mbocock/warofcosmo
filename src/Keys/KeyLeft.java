@@ -1,5 +1,7 @@
-package com.warofcosmo.cosmo;
+package Keys;
 
+import Entities.AbstractKeyEvent;
+import com.warofcosmo.cosmo.Player;
 import java.awt.event.KeyEvent;
 
 /**

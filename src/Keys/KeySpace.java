@@ -1,6 +1,8 @@
-package com.warofcosmo.cosmo;
+package Keys;
 
+import Entities.AbstractKeyEvent;
 import Weapons.PlayerWeapon;
+import com.warofcosmo.cosmo.Player;
 import java.awt.event.KeyEvent;
 import java.applet.Applet;
 import java.applet.AudioClip;

@@ -1,4 +1,4 @@
-package com.warofcosmo.cosmo;
+package Entities;
 
 
 import java.awt.event.KeyEvent;

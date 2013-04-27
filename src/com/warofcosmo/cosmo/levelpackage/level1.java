@@ -5,7 +5,7 @@
 package com.warofcosmo.cosmo.levelpackage;
 
 import com.warofcosmo.cosmo.Board;
-import com.warofcosmo.cosmo.Enemy;
+import Entities.Enemy;
 import sun.audio.AudioStream;
 
 /**

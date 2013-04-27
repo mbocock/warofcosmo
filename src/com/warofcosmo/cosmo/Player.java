@@ -1,5 +1,14 @@
 package com.warofcosmo.cosmo;
 
+import Keys.KeySpace;
+import Keys.KeyLeft;
+import Keys.KeyDown;
+import Keys.KeyRight;
+import Keys.KeyUp;
+import Entities.IPlayer;
+import Entities.AbstractKeyEvent;
+import Entities.AbstractEntity;
+import Entities.IKeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -15,9 +24,7 @@ public class Player extends AbstractEntity implements IPlayer{
     private int xMin = 20;
 	public Player(Board brd) {
 		super(brd,3,"p2",".png",100,400,32,16);
-		
-		//_x=100;
-		//_y=400;
+
 		_speed=1;
 		AbstractKeyEvent kright = new KeyRight(this);
 		AbstractKeyEvent kleft = new KeyLeft(this);

@@ -1,4 +1,7 @@
-package com.warofcosmo.cosmo;
+package Entities;
+
+import com.warofcosmo.cosmo.Board;
+import com.warofcosmo.cosmo.Player;
 
 /**
  *

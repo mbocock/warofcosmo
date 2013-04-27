@@ -1,5 +1,6 @@
-package com.warofcosmo.cosmo;
+package Entities;
 
+import com.warofcosmo.cosmo.Board;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 

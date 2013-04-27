@@ -1,5 +1,7 @@
 package com.warofcosmo.cosmo;
 
+import Entities.Enemy;
+import Entities.AbstractEntity;
 import Weapons.AbstractWeaponn;
 import com.warofcosmo.cosmo.levelpackage.level1;
 import java.awt.Graphics;

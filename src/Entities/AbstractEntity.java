@@ -1,5 +1,6 @@
-package com.warofcosmo.cosmo;
+package Entities;
 
+import com.warofcosmo.cosmo.Board;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
@@ -18,7 +19,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int _direction;
 	protected int _dy;
 	protected int _dx;
-	protected ArrayList<ImageIcon> _shipimg;
+	public ArrayList<ImageIcon> _shipimg;
 	private int curhealth;
 	private int maxhealth;
         protected ArrayList<ImageIcon> _staticimg;
@@ -84,6 +85,11 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public Image getImage() {
 		return _gfx;
 	}
+        
+        //@Override
+        public Image getImage(int img) {
+            return _shipimg.get(img).getImage();
+        }
 	
 	@Override
 	public int getDx() {
@@ -113,12 +119,12 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public void setGFX(Image i) {
 		_gfx = i;
 	}
-        
+        /*
         @Override
 	public Image getGFX() {
 		return _gfx;
 	}
-	
+	*/
         @Override
 	public Board getBoard() {
 		return _board;
