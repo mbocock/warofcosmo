@@ -1,5 +1,6 @@
 package com.warofcosmo.cosmo;
 
+import Weapons.PlayerWeapon;
 import java.awt.event.KeyEvent;
 import java.applet.Applet;
 import java.applet.AudioClip;

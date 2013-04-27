@@ -1,5 +1,6 @@
 package com.warofcosmo.cosmo;
 
+import Weapons.AbstractWeaponn;
 import com.warofcosmo.cosmo.levelpackage.level1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

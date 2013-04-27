@@ -1,4 +1,4 @@
-package com.warofcosmo.cosmo;
+package Weapons;
 
 import java.awt.Image;
 import java.awt.Rectangle;
