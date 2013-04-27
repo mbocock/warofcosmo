@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class Player extends AbstractEntity implements IPlayer{
 	
-	private ArrayList<IKeyEvent> keyevents = new ArrayList();
-	private int xMax = 100;
+    private ArrayList<IKeyEvent> keyevents = new ArrayList();
+    private int xMax = 100;
     private int yMax = 20;
     private int yMin = 60;
     private int xMin = 20;
 	public Player(Board brd) {
-		super(brd,3,"s",".png",100,400,32,16);
+		super(brd,3,"p2",".png",100,400,32,16);
 		
 		//_x=100;
 		//_y=400;

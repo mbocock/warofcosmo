@@ -28,12 +28,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 		_shipimg = new ArrayList<ImageIcon>();
                 _x=startx;
                 _y=starty;
-		
-                ImageIcon i = new ImageIcon(getClass().getResource("/s0.png"));
-                _gfx = i.getImage();
-
-
-		fillCycleImages(imgname,imgextension,imgcount);
+		fillCycleImages(imgname,imgextension,imgcount);		
 		_board = brd;
 	}
 	
