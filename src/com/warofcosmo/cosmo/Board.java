@@ -3,17 +3,15 @@ package com.warofcosmo.cosmo;
 import Entities.Enemy;
 import Entities.AbstractEntity;
 import Weapons.AbstractWeaponn;
-import com.warofcosmo.cosmo.levelpackage.level1;
+import levelpackage.level1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import sun.audio.*;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 
 
@@ -60,15 +58,11 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 startX=p.getX();
                 startY=p.getY();
 
-                //time = new Timer(5,this);
-	        //time.start();
                 Thread mainthread=new Thread(this);
                 mainthread.start();
            System.out.println(this.getWidth());
 	}
-	
  
-        
 	public void playBGM(AudioStream bgm){
 		AudioPlayer.player.start(bgm);
 	}
@@ -88,7 +82,6 @@ public class Board extends JPanel implements Runnable, KeyListener {
             p.setX(startX);
             p.setY(startY);
         }
-	
 
 	@Override
 	public void run() {
@@ -105,11 +98,8 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 
                     repaint();
                     Thread.sleep(5);
-                    
                 }
-                catch(Exception ignore){
-                
-                }
+                catch(Exception ignore){}
             }
 	}
         
@@ -123,6 +113,34 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 for(int i=0; i<Enemies.size();i++){
                     Enemy en=((Enemy)Enemies.get(i));
                     g2d.drawImage(en.getImage(),en.getX(),en.getY(),null);
+                    
+                    //If Player hits j restart
+                    if(p.getBounds().intersects(en.getBounds())){
+                        //enemy at j was hit by current weapon, remove both bullet and enemy
+                        //Enemies.remove(en);
+                        stopBGM(l.getBGM());
+                        try{
+                            Thread.sleep(5000);
+                        }
+                        catch(Exception ignore){}
+                        Enemies.removeAll(Enemies);
+                        
+                        l.setX(0);
+                        l.setY(0);
+                        
+                        p.setX(startX);
+                        p.setY(startY);
+                        
+                        playBGM(l.getBGM());
+                    }
+
+                    //IF Enemy leaves board delete them from array
+                    if(en.getY() < 0 || en.getY() > this.getSize().height){
+                        Enemies.remove(i);
+                    }
+                    if(en.getX() < 0 ){
+                        Enemies.remove(i);
+                    }
                 }
                 
                 for (int i = 0 ; i < weaps.size(); i++){
@@ -136,17 +154,18 @@ public class Board extends JPanel implements Runnable, KeyListener {
                         weaps.remove(weap);
                     }
                     for(int j=0; j < Enemies.size();j++){
-				Enemy e = ((Enemy)Enemies.get(j));
-				if(weap.getBounds().intersects(e.getBounds())){
-					//enemy at j was hit by current weapon, remove both bullet and enemy
-					weaps.remove(weap);
-					Enemies.remove(e);
-                                        System.out.println(Enemies.size());
-				}
+			Enemy e = ((Enemy)Enemies.get(j));
+                        //enemy at j was hit by current Reduce health and check if destroyed
+			if(weap.getBounds().intersects(e.getBounds())){
+                            weaps.remove(weap);
+                            e.setHealth(weap.getDamage());
+                            if(e.getHealth() <=0){
+                                Enemies.remove(e);
+                            }
 			}
-
                     }
 
+                }
         }
 
 	@Override
@@ -162,14 +181,12 @@ public class Board extends JPanel implements Runnable, KeyListener {
 		p.keyReleased(e);
 	}
 
-	public void addBullit(AbstractWeaponn b) {;
+	public void addBullit(AbstractWeaponn b) {
 		weaps.add(b);
 	}
 	
 	public void addEnemy(AbstractEntity e) {
-		//Enemies ArrayList had not been initialized at this point when you try to call this function
-		//from LevelEntity, fix was just initialize your ArrayList before instantiating any LevelEntity
-		Enemies.add(e);
+            Enemies.add(e);
 	}
 
 }

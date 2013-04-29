@@ -14,4 +14,5 @@ public interface IWeapon {
     public int getY();
     public Image getImage();
     public int getDistance();
+    public int getDamage();
 }

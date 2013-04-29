@@ -10,11 +10,9 @@ public class Enemy extends AbstractEntity{
         int _startX;
         int _startY;
         int dy=1;
-	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,int width,int height) {
-		super(brd,imgcount,imgname,imgextension,startx,starty,width,height);
+	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty) {
+		super(brd,imgcount,imgname,imgextension,startx,starty);
                 _speed=-2;
-                _width=width;
-                _height=height;
                 _startX=startx;
                 _startY=starty;
                 

@@ -20,31 +20,33 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int _dy;
 	protected int _dx;
 	public ArrayList<ImageIcon> _shipimg;
-	private int curhealth;
-	private int maxhealth;
+	protected int curhealth;
+	private int maxhealth=20;
         protected ArrayList<ImageIcon> _staticimg;
 	
-	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,int width,int height){
+	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
 		
 		_shipimg = new ArrayList<ImageIcon>();
                 _x=startx;
                 _y=starty;
 		fillCycleImages(imgname,imgextension,imgcount);		
 		_board = brd;
+                curhealth=maxhealth;
 	}
 	
 	protected void fillCycleImages(String imgname,String imgextension,int imgcount){
            
 		for(int i = 0; i < imgcount; i++){
 			_shipimg.add(new ImageIcon(getClass().getResource("/"+ imgname + i + imgextension)));
-		}
-                
-                        //starting neutral image usualy 0 in array
+                }
+                //starting neutral image usualy 0 in array
                 _gfx = _shipimg.get(0).getImage();
+                _width=_gfx.getWidth(_board);
+                _height=_gfx.getHeight(_board);
 	}
         
         public Rectangle getBounds() {
-		return new Rectangle(_x, _y, _width, _height);
+            return new Rectangle(_x, _y, _width, _height);
 	}
    
 	
@@ -138,5 +140,9 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         @Override
         public void setDirection(int dir) {
             _direction = dir;
+        }
+        
+        public void setHealth(int hit){
+            curhealth=curhealth-hit;
         }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.warofcosmo.cosmo.levelpackage;
+package levelpackage;
 
 import com.warofcosmo.cosmo.Board;
 import java.awt.Image;
@@ -72,6 +72,15 @@ public abstract class AbstractLevel implements ILevel{
     @Override
     public int getLength(){
         return _length;
+    }
+    
+    @Override
+    public void setX(int dx){
+        _dx=dx;
+    }
+    @Override
+    public void setY(int dy){
+        dy=dy;
     }
 
 }

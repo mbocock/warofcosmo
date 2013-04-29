@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 */
 public abstract class AbstractWeaponn implements IWeapon {
     
-        private int startx;
+private int startx;
 private int starty;
 private int x;
 private int y;
@@ -22,6 +22,7 @@ private Image basebullit;
 private int speed=2;
 private int width = 9;
 private int height = 8;
+private int _damage=10;
 
 AbstractWeaponn(int nx, int ny, int dir){
 ImageIcon i = new ImageIcon(getClass().getResource("/shotbasic.png"));
@@ -74,7 +75,9 @@ return basebullit;
             return distance;
         }
         
-        //Abstract Method
-        //public abstract void velocityBullet();
+        @Override
+        public int getDamage(){
+            return _damage;
+        }
     
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.warofcosmo.cosmo.levelpackage;
+package levelpackage;
 
 import java.awt.Image;
 import sun.audio.AudioStream;
@@ -19,4 +19,6 @@ public interface ILevel {
     public AudioStream getBGM();
     public Image getBG();
     public int getLength();
+    public void setX(int dx);
+    public void setY(int dy);
 }
