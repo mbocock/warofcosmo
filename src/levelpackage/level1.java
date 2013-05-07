@@ -36,7 +36,7 @@ public class level1 extends AbstractLevel{
 		}
                
                 if(_dx == -300){
-                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400));
+                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",500,400));
                      _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300));
                      _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,600));
                 }

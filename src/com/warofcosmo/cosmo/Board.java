@@ -90,12 +90,12 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 try{
                     p.move();
                     l.Move();
-                
+                /*
                     for(int i=0; i<Enemies.size();i++){
                         Enemy en=((Enemy)Enemies.get(i));
                         en.move();
                     }
-                
+                */
                     repaint();
                     Thread.sleep(5);
                 }
