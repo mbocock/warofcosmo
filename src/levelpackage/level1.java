@@ -5,7 +5,7 @@
 package levelpackage;
 
 import com.warofcosmo.cosmo.Board;
-import Entities.Enemy;
+import Entities.*;
 import sun.audio.AudioStream;
 
 /**
@@ -36,19 +36,28 @@ public class level1 extends AbstractLevel{
 		}
                
                 if(_dx == -300){
-                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",500,400));
-                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300));
-                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,600));
+                     _brd.addEnemy(new Enemy1(_brd,px,300));
+                     _brd.addEnemy(new Enemy1(_brd,px,500));
+                     _brd.addEnemy(new Enemy1(_brd,px,700));
+                     
+                     _brd.addEnemy(new Enemy2(_brd,px,400));
+                     _brd.addEnemy(new Enemy2(_brd,px,600));
+                     
                 }
                
-                if(_dx == -800){
-                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,200));
-                     _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,700));
+                if(_dx == -1500){
+                     _brd.addEnemy(new Enemy1(_brd,px,200));
+                     _brd.addEnemy(new Enemy1(_brd,px,700));
+                     
+                     _brd.addEnemy(new Enemy2(_brd,px,300));
+                     _brd.addEnemy(new Enemy2(_brd,px,400));
+                     _brd.addEnemy(new Enemy2(_brd,px,500));
+                     _brd.addEnemy(new Enemy2(_brd,px,600));
                 }
-                if(_dx == -1000){
-                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,400));
-                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,300));
-                     _brd.addEnemy(new Enemy(_brd,1,"er",".png",px,600));
+                if(_dx == -2700){
+                     _brd.addEnemy(new Enemy1(_brd,px,300));
+                     _brd.addEnemy(new Enemy1(_brd,px,500));
+                     _brd.addEnemy(new Enemy1(_brd,px,700));
                 }
                 
     }
