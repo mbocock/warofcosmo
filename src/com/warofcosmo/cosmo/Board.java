@@ -3,6 +3,7 @@ package com.warofcosmo.cosmo;
 import Entities.Enemy;
 import Entities.AbstractEntity;
 import Weapons.AbstractWeaponn;
+import java.awt.Color;
 import levelpackage.level1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,6 +13,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import sun.audio.*;
 import javax.swing.JPanel;
+import projectiles.Projectile;
 
 
 
@@ -26,6 +28,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
         private ArrayList weaps;
         private ArrayList Enemies;
         private ArrayList LevelArr;
+		private ArrayList<Projectile> _projectiles = new ArrayList();
         private int startX;
         private int startY;
         private int BWidth=5020;
@@ -107,8 +110,11 @@ public class Board extends JPanel implements Runnable, KeyListener {
         public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
+		
                 g2d.drawImage(bgimg,l.getX(),0,null);
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
+				
+				drawProjectiles(g2d);
                 
                 for(int i=0; i<Enemies.size();i++){
                     Enemy en=((Enemy)Enemies.get(i));
@@ -167,6 +173,16 @@ public class Board extends JPanel implements Runnable, KeyListener {
 
                 }
         }
+		
+	private void drawProjectiles(Graphics2D g2d) {
+		
+		for (int i = 0; i < _projectiles.size(); i++) {
+			Projectile p = _projectiles.get(i);
+			g2d.setColor(p.getColor());
+			//g2d.drawRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+			g2d.drawOval(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+		}
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
@@ -187,6 +203,14 @@ public class Board extends JPanel implements Runnable, KeyListener {
 	
 	public void addEnemy(AbstractEntity e) {
             Enemies.add(e);
+	}
+	
+	public void addProjectile(Projectile p) {
+		_projectiles.add(p);
+	}
+	
+	public Player getPlayer() {
+		return p;
 	}
 
 }
