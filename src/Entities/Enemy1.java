@@ -2,6 +2,7 @@ package Entities;
 
 import com.warofcosmo.cosmo.Board;
 import java.awt.event.ActionEvent;
+import projectiles.ProjectileSpawner;
 
 public class Enemy1 extends Enemy implements Runnable{
         
@@ -10,7 +11,8 @@ public class Enemy1 extends Enemy implements Runnable{
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
-
+				
+				ProjectileSpawner _projSpawner = new ProjectileSpawner(this);
                 
                 for(int x=0;x<200;x++){
                     
@@ -25,8 +27,12 @@ public class Enemy1 extends Enemy implements Runnable{
                     
                     
                 }
-                Thread enemythread=new Thread(this);
-                enemythread.start();
+// shouldn't need this new Thread here, could just call super.move() to add any functionality
+// to your original move method, or just leave it overriden since the class you are extending
+// will automatically generate it's own Thread and start
+				
+                //Thread enemythread=new Thread(this);
+                //enemythread.start();
                 
             //    _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300));
 
@@ -34,7 +40,7 @@ public class Enemy1 extends Enemy implements Runnable{
 
 	@Override
 	public void move() {
-       
+       //super.move();
           //_x = _x + -1;
           //_y = _y + dy;
 
