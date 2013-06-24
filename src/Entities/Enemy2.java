@@ -2,6 +2,7 @@ package Entities;
 
 import com.warofcosmo.cosmo.Board;
 import java.awt.event.ActionEvent;
+import projectiles.ProjectileSpawner;
 
 public class Enemy2 extends Enemy implements Runnable{
         
@@ -17,8 +18,11 @@ public class Enemy2 extends Enemy implements Runnable{
 
                     marrayX[x]=-3;     
                 }
-                Thread enemythread=new Thread(this);
-                enemythread.start();
+                
+                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500);
+                
+             //   Thread enemythread=new Thread(this);
+             //   enemythread.start();
                 
             //    _brd.addEnemy(new Enemy(_brd,3,"e3l",".png",px,300));
 

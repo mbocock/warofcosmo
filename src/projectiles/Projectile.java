@@ -2,6 +2,7 @@ package projectiles;
 
 import Entities.AbstractEntity;
 import java.awt.Color;
+import java.awt.Rectangle;
 
 /**
  * @todo need to remove these projectiles when they fly off screen
@@ -19,6 +20,7 @@ public class Projectile implements Runnable{
 	private Color _color;
 	private AbstractEntity _target;
 	private int _projectileSpeed = 2;
+        private boolean _running=true;
 	
 	public Projectile(int x, int y, AbstractEntity t) {
 		//System.out.println("Creating new projectile...");
@@ -61,7 +63,7 @@ public class Projectile implements Runnable{
 	public void run() {
 		
 		try{
-			while(true){
+			while(_running){
 				move();
 				Thread.sleep(5);
 			}
@@ -83,5 +85,6 @@ public class Projectile implements Runnable{
 	public void setHeight(int h) {_height = h;}
 	public Color getColor() {return _color;}
 	public void setColor(Color color) {this._color = color;}
-	
+        public Rectangle getBounds() {return new Rectangle(_x, _y, _width, _height);}
+        public void stop(){_running=false;}
 }

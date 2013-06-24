@@ -12,7 +12,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 _startX=startx;
                 _startY=starty;
 				
-				ProjectileSpawner _projSpawner = new ProjectileSpawner(this);
+		ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1000);
                 
                 for(int x=0;x<200;x++){
                     

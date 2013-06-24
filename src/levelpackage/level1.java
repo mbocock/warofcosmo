@@ -40,11 +40,11 @@ public class level1 extends AbstractLevel{
                      _brd.addEnemy(new Enemy1(_brd,px,500));
                      _brd.addEnemy(new Enemy1(_brd,px,700));
                      
-                     _brd.addEnemy(new Enemy2(_brd,px,400));
-                     _brd.addEnemy(new Enemy2(_brd,px,600));
+                     //_brd.addEnemy(new Enemy2(_brd,px,400));
+                     //_brd.addEnemy(new Enemy2(_brd,px,600));
                      
                 }
-               
+               /*
                 if(_dx == -1500){
                      _brd.addEnemy(new Enemy1(_brd,px,200));
                      _brd.addEnemy(new Enemy1(_brd,px,700));
@@ -59,6 +59,6 @@ public class level1 extends AbstractLevel{
                      _brd.addEnemy(new Enemy1(_brd,px,500));
                      _brd.addEnemy(new Enemy1(_brd,px,700));
                 }
-                
+                */
     }
 }

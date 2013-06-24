@@ -122,22 +122,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                     
                     //If Player hits j restart
                     if(p.getBounds().intersects(en.getBounds())){
-                        //enemy at j was hit by current weapon, remove both bullet and enemy
-                        //Enemies.remove(en);
-                        stopBGM(l.getBGM());
-                        try{
-                            Thread.sleep(5000);
-                        }
-                        catch(Exception ignore){}
-                        Enemies.removeAll(Enemies);
-                        
-                        l.setX(0);
-                        l.setY(0);
-                        
-                        p.setX(startX);
-                        p.setY(startY);
-                        
-                        playBGM(l.getBGM());
+                        restartLevel();
                     }
 
                     //IF Enemy leaves board delete them from array
@@ -174,13 +159,53 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 }
         }
 		
+        private void restartLevel(){
+            stopBGM(l.getBGM());
+                        for (int i = 0; i < _projectiles.size(); i++) {
+                            Projectile pr=_projectiles.get(i);
+                            pr.stop();
+                        }
+                        Enemies.removeAll(Enemies);
+                        _projectiles.removeAll(_projectiles);
+                        try{
+                            Thread.sleep(5000);
+                        }
+                        catch(Exception ignore){}
+                        
+                        
+               
+                        
+                        l.setX(0);
+                        l.setY(0);
+                        
+                        p.setX(startX);
+                        p.setY(startY);
+                        
+                        playBGM(l.getBGM());
+        }
+        
+        
 	private void drawProjectiles(Graphics2D g2d) {
 		
 		for (int i = 0; i < _projectiles.size(); i++) {
-			Projectile p = _projectiles.get(i);
-			g2d.setColor(p.getColor());
+			Projectile pr = _projectiles.get(i);
+			g2d.setColor(pr.getColor());
 			//g2d.drawRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
-			g2d.drawOval(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+			g2d.drawOval(pr.getX(), pr.getY(), pr.getWidth(), pr.getHeight());
+                        
+                        //Remove projectile from array if off screen
+                        if(pr.getY() < 0 || pr.getY() > this.getSize().height){
+                            _projectiles.remove(i);
+                        }
+                        if(pr.getX() < 0 || pr.getX() > this.getSize().width){
+                            _projectiles.remove(i);
+                        }
+                        
+                        // check if player hit by projectile
+                        if(p.getBounds().intersects(pr.getBounds()))
+                        {
+                            restartLevel();
+                        }
 		}
 	}
 
