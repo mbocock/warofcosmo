@@ -19,10 +19,11 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int _direction;
 	protected int _dy;
 	protected int _dx;
-	public ArrayList<ImageIcon> _shipimg;
 	protected int curhealth;
+	protected ArrayList<ImageIcon> _staticimg;
+	protected Thread _projectileThread;
+	public ArrayList<ImageIcon> _shipimg;
 	private int maxhealth=20;
-        protected ArrayList<ImageIcon> _staticimg;
 	
 	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
 		
@@ -45,104 +46,60 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 _height=_gfx.getHeight(_board);
 	}
         
-        public Rectangle getBounds() {
-            return new Rectangle(_x, _y, _width, _height);
-	}
-   
+	public Rectangle getBounds() {return new Rectangle(_x, _y, _width, _height);}
 	
 	@Override
-	public int getX() {
-		return _x;
-	}
+	public int getX() {return _x;}
 
 	@Override
-	public int getY() {
-		return _y;
-	}
-
+	public int getY() {return _y;}
 
 	@Override
-	public void setX(int x) {
-		_x = x;
-	}
+	public void setX(int x) {_x = x;}
 
 	@Override
-	public void setY(int y) {
-		_y = y;
-	}
-
-	
-	@Override
-	public int getHealth() {
-		return curhealth;
-	}
+	public void setY(int y) {_y = y;}
 
 	@Override
-	public int getMaxHealth() {
-		return maxhealth;
-	}
+	public int getHealth() {return curhealth;}
 
-	
 	@Override
-	public Image getImage() {
-		return _gfx;
-	}
+	public int getMaxHealth() {return maxhealth;}
+
+	@Override
+	public Image getImage() {return _gfx;}
         
-        //@Override
-        public Image getImage(int img) {
-            return _shipimg.get(img).getImage();
-        }
+	public Image getImage(int img) {return _shipimg.get(img).getImage();}
 	
 	@Override
-	public int getDx() {
-		return _dx;
-	}
+	public int getDx() {return _dx;}
 	
-        @Override
-	public int getDy() {
-		return _dy;
-	}
+	@Override
+	public int getDy() {return _dy;}
 		
-	public int getSpeed() {
-		return _speed;
-	}
+	public int getSpeed() {return _speed;}
 	
-        @Override
-	public void setDx(int dx) {
-		_dx = dx;
-	}
+	@Override
+	public void setDx(int dx) {_dx = dx;}
 	
-        @Override
-	public void setDy(int dy) {
-		_dy = dy;
-	}
+	@Override
+	public void setDy(int dy) {_dy = dy;}
 	
-        @Override
-	public void setGFX(Image i) {
-		_gfx = i;
-	}
-        /*
-        @Override
-	public Image getGFX() {
-		return _gfx;
-	}
-	*/
-        @Override
-	public Board getBoard() {
-		return _board;
-	}
+	@Override
+	public void setGFX(Image i) {_gfx = i;}
         
-         @Override
-        public int getDirection() {
-            return _direction;
-        }
+	@Override
+	public Board getBoard() {return _board;}
         
-        @Override
-        public void setDirection(int dir) {
-            _direction = dir;
-        }
+	@Override
+	public int getDirection() {return _direction;}
         
-        public void setHealth(int hit){
-            curhealth=curhealth-hit;
-        }
+	@Override
+	public void setDirection(int dir) {_direction = dir;}
+        
+	public void setHealth(int hit){curhealth=curhealth-hit;}
+		
+	public void setProjectileThread(Thread pthread){_projectileThread = pthread;}
+	
+	public Thread getProjectileThread(){return _projectileThread; }
 }
