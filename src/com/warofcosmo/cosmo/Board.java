@@ -19,20 +19,20 @@ import projectiles.Projectile;
 
 public class Board extends JPanel implements Runnable, KeyListener {
 	
-        private Image bgimg;
-        private Player p;
-        private level1 l;
-        protected AudioStream as;
-        private int level;
+	private Image bgimg;
+	private Player p;
+	private level1 l;
+	protected AudioStream as;
+	private int level;
 	private int size;
-        private ArrayList weaps;
-        private ArrayList Enemies;
-        private ArrayList LevelArr;
-		private ArrayList<Projectile> _projectiles = new ArrayList();
-        private int startX;
-        private int startY;
-        private int BWidth=5020;
-        private int BHeight=920;
+	private ArrayList weaps;
+	private ArrayList<AbstractEntity> Enemies;
+	private ArrayList LevelArr;
+	private ArrayList<Projectile> _projectiles = new ArrayList();
+	private int startX;
+	private int startY;
+	private int BWidth=5020;
+	private int BHeight=920;
 	
 	// contructor method
 	public Board(){
@@ -146,25 +146,35 @@ public class Board extends JPanel implements Runnable, KeyListener {
                     }
                     for(int j=0; j < Enemies.size();j++){
 			Enemy e = ((Enemy)Enemies.get(j));
-                        //enemy at j was hit by current Reduce health and check if destroyed
+			//enemy at j was hit by current Reduce health and check if destroyed
 			if(weap.getBounds().intersects(e.getBounds())){
-                            weaps.remove(weap);
-                            e.setHealth(weap.getDamage());
-                            if(e.getHealth() <=0){
-                                Enemies.remove(e);
-                            }
+				weaps.remove(weap);
+				e.setHealth(weap.getDamage());
+				
+				if(e.getHealth() <=0){
+					//kill enemies projectile spawning thread and remove enemy
+					e.getProjectileThread().interrupt();
+					Enemies.remove(e);
+				}
 			}
                     }
 
                 }
         }
 		
-        private void restartLevel(){
-            stopBGM(l.getBGM());
-                        for (int i = 0; i < _projectiles.size(); i++) {
-                            Projectile pr=_projectiles.get(i);
-                            pr.stop();
-                        }
+	private void restartLevel(){
+		stopBGM(l.getBGM());
+			for (int i = 0; i < _projectiles.size(); i++) {
+				Projectile pr=_projectiles.get(i);
+				pr.stop();
+			}
+						
+		//if any projectileSpawners exist, remove them
+		for (int i = 0; i < Enemies.size(); i++) {
+			AbstractEntity e = Enemies.get(i);
+			e.getProjectileThread().interrupt();
+		}
+					
                         Enemies.removeAll(Enemies);
                         _projectiles.removeAll(_projectiles);
                         try{
