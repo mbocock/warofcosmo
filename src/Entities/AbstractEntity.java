@@ -23,11 +23,13 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected ArrayList<ImageIcon> _staticimg;
 	protected Thread _projectileThread;
 	public ArrayList<ImageIcon> _shipimg;
+        public ArrayList<ImageIcon> _deathimg;
 	private int maxhealth=20;
 	
 	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
 		
 		_shipimg = new ArrayList<ImageIcon>();
+                _deathimg = new ArrayList<ImageIcon>();
                 _x=startx;
                 _y=starty;
 		fillCycleImages(imgname,imgextension,imgcount);		
@@ -44,6 +46,17 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 _gfx = _shipimg.get(0).getImage();
                 _width=_gfx.getWidth(_board);
                 _height=_gfx.getHeight(_board);
+	}
+       
+        protected void fillDeathCycleImages(String imgname,String imgextension,int imgcount){
+           
+		for(int i = 0; i < imgcount; i++){
+			_deathimg.add(new ImageIcon(getClass().getResource("/"+ imgname + i + imgextension)));
+                }
+                //starting neutral image usualy 0 in array
+                //_gfx = _shipimg.get(0).getImage();
+                //_width=_gfx.getWidth(_board);
+                //_height=_gfx.getHeight(_board);
 	}
         
 	public Rectangle getBounds() {return new Rectangle(_x, _y, _width, _height);}

@@ -11,6 +11,8 @@ public class Enemy1 extends Enemy implements Runnable{
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
+                
+                fillDeathCycleImages("death",".png",4);
 				
 		ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1000);
                 
