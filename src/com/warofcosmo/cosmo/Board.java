@@ -33,6 +33,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 	private int startY;
 	private int BWidth=5020;
 	private int BHeight=920;
+        private boolean _death=false;
 	
 	// contructor method
 	public Board(){
@@ -63,7 +64,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 
                 Thread mainthread=new Thread(this);
                 mainthread.start();
-           System.out.println(this.getWidth());
+
 	}
  
 	public void playBGM(AudioStream bgm){
@@ -88,17 +89,23 @@ public class Board extends JPanel implements Runnable, KeyListener {
 
 	@Override
 	public void run() {
-            
+          
             while(true){
                 try{
-                    p.move();
-                    l.Move();
-                /*
-                    for(int i=0; i<Enemies.size();i++){
-                        Enemy en=((Enemy)Enemies.get(i));
-                        en.move();
+                    if(!_death){
+                       p.move(); 
+                    }else{
+                       if(p.death()){
+                           restartLevel();
+                       }else{
+                           Thread.sleep(10);
+                       }
+                       
+                       
                     }
-                */
+                    
+                    l.Move();
+
                     repaint();
                     Thread.sleep(5);
                 }
@@ -112,9 +119,12 @@ public class Board extends JPanel implements Runnable, KeyListener {
 		Graphics2D g2d = (Graphics2D) g;
 		
                 g2d.drawImage(bgimg,l.getX(),0,null);
+                
+
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
-				
-				drawProjectiles(g2d);
+
+                    
+		drawProjectiles(g2d);
                 
                 for(int i=0; i<Enemies.size();i++){
                     Enemy en=((Enemy)Enemies.get(i));
@@ -190,7 +200,9 @@ public class Board extends JPanel implements Runnable, KeyListener {
                         
                         p.setX(startX);
                         p.setY(startY);
+                        p.setGFX(p.getImage(0));
                         
+                        _death=false;
                         playBGM(l.getBGM());
         }
         
@@ -214,11 +226,13 @@ public class Board extends JPanel implements Runnable, KeyListener {
                         // check if player hit by projectile
                         if(p.getBounds().intersects(pr.getBounds()))
                         {
-                            restartLevel();
+                            _death=true;
+                            
                         }
 		}
 	}
 
+        
 	@Override
 	public void keyTyped(KeyEvent e) {}
 

@@ -25,6 +25,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public ArrayList<ImageIcon> _shipimg;
         public ArrayList<ImageIcon> _deathimg;
 	private int maxhealth=20;
+        private int dCount=0;
+        private int TCount=0;
 	
 	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
 		
@@ -32,7 +34,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 _deathimg = new ArrayList<ImageIcon>();
                 _x=startx;
                 _y=starty;
-		fillCycleImages(imgname,imgextension,imgcount);		
+		fillCycleImages(imgname,imgextension,imgcount);	
+                fillDeathCycleImages("death",".png",4);
 		_board = brd;
                 curhealth=maxhealth;
 	}
@@ -61,6 +64,25 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         
 	public Rectangle getBounds() {return new Rectangle(_x, _y, _width, _height);}
 	
+        public boolean death(){
+          if(TCount>7){
+            if(dCount<4){       
+                setDeath(dCount);
+                dCount++;
+                TCount=0;
+                return false;
+            }else{
+                TCount=0;
+                return true;
+            }
+            
+          }
+          else{
+              TCount++;
+              return false;
+          }
+        }
+        
 	@Override
 	public int getX() {return _x;}
 
@@ -109,10 +131,14 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         
 	@Override
 	public void setDirection(int dir) {_direction = dir;}
-        
+        @Override
 	public void setHealth(int hit){curhealth=curhealth-hit;}
-		
+	@Override	
 	public void setProjectileThread(Thread pthread){_projectileThread = pthread;}
-	
+	@Override
 	public Thread getProjectileThread(){return _projectileThread; }
+        @Override
+	public void setDeath(int n) {
+            _gfx=_deathimg.get(n).getImage();
+        }
 }

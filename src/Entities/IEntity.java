@@ -25,4 +25,8 @@ public interface IEntity {
 	public void setDy(int dy);
 	public void setGFX(Image i);
 	public void setDirection(int dir); 
+        public void setHealth(int hit);
+	public void setProjectileThread(Thread pthread);
+        public void setDeath(int n);
+	public Thread getProjectileThread();
 }
