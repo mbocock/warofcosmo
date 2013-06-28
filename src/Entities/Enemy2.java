@@ -7,7 +7,7 @@ import projectiles.ProjectileSpawner;
 public class Enemy2 extends Enemy implements Runnable{
         
 	public Enemy2(Board brd,int startx, int starty) {
-		super(brd,3,"e3l",".png",startx,starty);
+		super(brd,3,"e3l",".png",startx,starty,"Enemy_Hit");
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;

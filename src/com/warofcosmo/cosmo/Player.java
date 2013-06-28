@@ -23,7 +23,7 @@ public class Player extends AbstractEntity implements IPlayer{
     private int yMin = 60;
     private int xMin = 20;
 	public Player(Board brd) {
-		super(brd,3,"p2",".png",100,400);
+		super(brd,3,"p2",".png",100,400,"Dead");
 
 		_speed=1;
 		AbstractKeyEvent kright = new KeyRight(this);

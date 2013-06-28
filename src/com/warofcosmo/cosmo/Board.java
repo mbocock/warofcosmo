@@ -96,6 +96,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                        p.move(); 
                     }else{
                        if(p.death()){
+                           //p.getDeathFX().play();
                            restartLevel();
                        }else{
                            Thread.sleep(10);
@@ -142,6 +143,14 @@ public class Board extends JPanel implements Runnable, KeyListener {
                     if(en.getX() < 0 ){
                         Enemies.remove(i);
                     }
+                    if(en.getHealth() <=0){
+			//kill enemies projectile spawning thread and remove enemy
+                        en.getProjectileThread().interrupt();
+                        if(en.death()){
+                            Enemies.remove(en);
+                            //en.getDeathFX().play();
+                        }
+                    }
                 }
                 
                 for (int i = 0 ; i < weaps.size(); i++){
@@ -162,9 +171,8 @@ public class Board extends JPanel implements Runnable, KeyListener {
 				e.setHealth(weap.getDamage());
 				
 				if(e.getHealth() <=0){
-					//kill enemies projectile spawning thread and remove enemy
-					e.getProjectileThread().interrupt();
-					Enemies.remove(e);
+                                    //kill enemies projectile spawning thread and remove enemy
+                                    e.getProjectileThread().interrupt();
 				}
 			}
                     }
@@ -174,10 +182,11 @@ public class Board extends JPanel implements Runnable, KeyListener {
 		
 	private void restartLevel(){
 		stopBGM(l.getBGM());
-			for (int i = 0; i < _projectiles.size(); i++) {
-				Projectile pr=_projectiles.get(i);
-				pr.stop();
-			}
+			
+                for (int i = 0; i < _projectiles.size(); i++) {
+                    Projectile pr=_projectiles.get(i);
+                    pr.stop();
+		}
 						
 		//if any projectileSpawners exist, remove them
 		for (int i = 0; i < Enemies.size(); i++) {
@@ -187,8 +196,10 @@ public class Board extends JPanel implements Runnable, KeyListener {
 					
                         Enemies.removeAll(Enemies);
                         _projectiles.removeAll(_projectiles);
+                        weaps.removeAll(weaps);
+                        
                         try{
-                            Thread.sleep(5000);
+                            Thread.sleep(3000);
                         }
                         catch(Exception ignore){}
                         

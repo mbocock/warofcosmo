@@ -1,9 +1,13 @@
 package Entities;
 
 import com.warofcosmo.cosmo.Board;
+import com.warofcosmo.cosmo.Player;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -27,8 +31,9 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	private int maxhealth=20;
         private int dCount=0;
         private int TCount=0;
+        private final AudioClip _deathFX;
 	
-	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty){
+	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String DeathWav){
 		
 		_shipimg = new ArrayList<ImageIcon>();
                 _deathimg = new ArrayList<ImageIcon>();
@@ -38,6 +43,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 fillDeathCycleImages("death",".png",4);
 		_board = brd;
                 curhealth=maxhealth;
+                URL urlClick = Player.class.getResource("/"+DeathWav+".wav");
+                _deathFX = Applet.newAudioClip(urlClick);
 	}
 	
 	protected void fillCycleImages(String imgname,String imgextension,int imgcount){
@@ -66,7 +73,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	
         public boolean death(){
           if(TCount>7){
-            if(dCount<4){       
+            if(dCount<4){  
+                if(dCount==1){getDeathFX().play();}
                 setDeath(dCount);
                 dCount++;
                 TCount=0;
@@ -141,4 +149,5 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public void setDeath(int n) {
             _gfx=_deathimg.get(n).getImage();
         }
+        public AudioClip getDeathFX() {return _deathFX;}
 }
