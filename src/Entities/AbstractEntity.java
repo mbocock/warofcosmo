@@ -32,6 +32,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         private int dCount=0;
         private int TCount=0;
         private final AudioClip _deathFX;
+        protected int _points=50;
 	
 	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String DeathWav){
 		
@@ -150,4 +151,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
             _gfx=_deathimg.get(n).getImage();
         }
         public AudioClip getDeathFX() {return _deathFX;}
+        @Override
+        public int getpoints(){
+            return _points;
+        }
 }

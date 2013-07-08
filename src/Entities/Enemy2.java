@@ -11,7 +11,7 @@ public class Enemy2 extends Enemy implements Runnable{
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
-
+                _points=150;
                 
                 for(int x=0;x<200;x++){
                     marrayY[x]=0;

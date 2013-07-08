@@ -11,6 +11,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
+                _points=100;
                 
                 fillDeathCycleImages("death",".png",4);
 				

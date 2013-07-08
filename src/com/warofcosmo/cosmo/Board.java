@@ -4,12 +4,14 @@ import Entities.Enemy;
 import Entities.AbstractEntity;
 import Weapons.AbstractWeaponn;
 import java.awt.Color;
+import java.awt.Font;
 import levelpackage.level1;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import sun.audio.*;
 import javax.swing.JPanel;
@@ -34,6 +36,8 @@ public class Board extends JPanel implements Runnable, KeyListener {
 	private int BWidth=5020;
 	private int BHeight=920;
         private boolean _death=false;
+        private int _score=0;
+        static final String ZEROES = "000000000000";
 	
 	// contructor method
 	public Board(){
@@ -61,7 +65,9 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 
                 startX=p.getX();
                 startY=p.getY();
-
+                
+                NumberFormat nf = NumberFormat.getInstance();
+                
                 Thread mainthread=new Thread(this);
                 mainthread.start();
 
@@ -89,7 +95,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 
 	@Override
 	public void run() {
-          
+      
             while(true){
                 try{
                     if(!_death){
@@ -119,11 +125,16 @@ public class Board extends JPanel implements Runnable, KeyListener {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		
-                g2d.drawImage(bgimg,l.getX(),0,null);
+               
                 
+                g2d.drawImage(bgimg,l.getX(),0,null);
 
                 g2d.drawImage(p.getImage(),p.getX(),p.getY(),null);
-
+                
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g.setColor(Color.RED);
+                
+                g.drawString(Integer.toString(_score),10,30);
                     
 		drawProjectiles(g2d);
                 
@@ -148,6 +159,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                         en.getProjectileThread().interrupt();
                         if(en.death()){
                             Enemies.remove(en);
+                            _score=_score+en.getpoints();
                             //en.getDeathFX().play();
                         }
                     }

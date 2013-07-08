@@ -29,4 +29,5 @@ public interface IEntity {
 	public void setProjectileThread(Thread pthread);
         public void setDeath(int n);
 	public Thread getProjectileThread();
+        public int getpoints();
 }
