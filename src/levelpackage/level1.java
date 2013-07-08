@@ -18,7 +18,7 @@ public class level1 extends AbstractLevel{
     private AudioStream as;
     
     public level1(Board brd){
-        super(brd,"mountains1.png","project4.wav",0,0);   
+        super(brd,"bg2.png","project4.wav",0,0);   
     }
    
     @Override
