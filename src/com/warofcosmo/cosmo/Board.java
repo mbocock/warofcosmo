@@ -37,7 +37,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 	private int BHeight=920;
         private boolean _death=false;
         private int _score=0;
-        static final String ZEROES = "000000000000";
+        static final int _zeroes = 6;
 	
 	// contructor method
 	public Board(){
@@ -107,8 +107,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                        }else{
                            Thread.sleep(10);
                        }
-                       
-                       
+      
                     }
                     
                     l.Move();
@@ -134,7 +133,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g.setColor(Color.RED);
                 
-                g.drawString(Integer.toString(_score),10,30);
+                g.drawString("SCORE: "+ String.format("%0"+ _zeroes +"d",_score),10,30);
                     
 		drawProjectiles(g2d);
                 
@@ -214,9 +213,6 @@ public class Board extends JPanel implements Runnable, KeyListener {
                             Thread.sleep(3000);
                         }
                         catch(Exception ignore){}
-                        
-                        
-               
                         
                         l.setX(0);
                         l.setY(0);
