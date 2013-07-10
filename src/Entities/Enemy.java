@@ -3,6 +3,7 @@ package Entities;
 import com.warofcosmo.cosmo.Board;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import projectiles.ProjectileSpawner;
 
 public abstract class Enemy extends AbstractEntity implements Runnable{
 	int[] p;
@@ -16,7 +17,7 @@ public abstract class Enemy extends AbstractEntity implements Runnable{
         int count=0;
         int leave=0;
         
-	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String deathwav) {
+	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String deathwav,int pwidth, int pheight) {
 		super(brd,imgcount,imgname,imgextension,startx,starty,deathwav);
                 _speed=-1;
                 _startX=startx;
@@ -24,7 +25,7 @@ public abstract class Enemy extends AbstractEntity implements Runnable{
                 marrayX=new int[200];
                 marrayY=new int[200];
 
-                
+                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500,_pwidth,_pheight);
                 Thread enemythread=new Thread(this);
                 enemythread.start();
                 

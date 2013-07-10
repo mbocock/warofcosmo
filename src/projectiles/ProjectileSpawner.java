@@ -21,10 +21,12 @@ public class ProjectileSpawner implements Runnable{
 	private int _dy;
 	private Thread _running;
 	
-	public ProjectileSpawner(AbstractEntity ae,int speed) {
+	public ProjectileSpawner(AbstractEntity ae,int speed, int width, int height) {
 		_entity = ae;
 		_board = _entity.getBoard();
 		_fireSpeed=speed;
+                _width=width;
+                _height=height;
 		Thread _running = new Thread(this);
 		ae.setProjectileThread(_running);
 		_running.start();
@@ -45,7 +47,7 @@ public class ProjectileSpawner implements Runnable{
 	
 	
 	private void fire() {
-		Projectile p = new Projectile(_entity.getX(),_entity.getY(),_board.getPlayer());
+		Projectile p = new Projectile(_entity.getX(),_entity.getY(),_board.getPlayer(),_width,_height);
 		_board.addProjectile(p);
 	}
         public void stop(){_running=null;}

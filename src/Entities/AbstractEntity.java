@@ -33,6 +33,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         private int TCount=0;
         private final AudioClip _deathFX;
         protected int _points=50;
+        protected int _pwidth=5;
+        protected int _pheight=5;
 	
 	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String DeathWav){
 		
@@ -46,6 +48,9 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 curhealth=maxhealth;
                 URL urlClick = Player.class.getResource("/"+DeathWav+".wav");
                 _deathFX = Applet.newAudioClip(urlClick);
+                
+                
+                
 	}
 	
 	protected void fillCycleImages(String imgname,String imgextension,int imgcount){

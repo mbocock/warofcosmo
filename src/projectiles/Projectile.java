@@ -22,7 +22,7 @@ public class Projectile implements Runnable{
 	private int _projectileSpeed = 2;
         private boolean _running=true;
 	
-	public Projectile(int x, int y, AbstractEntity t) {
+	public Projectile(int x, int y, AbstractEntity t,int width, int height) {
 		//System.out.println("Creating new projectile...");
 		_target = t;
 		setX(x);
@@ -46,8 +46,8 @@ public class Projectile implements Runnable{
 		setDx((int)dx);
 		setDy((int)dy);
 		
-		setWidth(5);
-		setHeight(5);
+		setWidth(width);
+		setHeight(height);
 		setColor(Color.GREEN);
 		
 		Thread thread = new Thread(this);

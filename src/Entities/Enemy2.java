@@ -7,7 +7,8 @@ import projectiles.ProjectileSpawner;
 public class Enemy2 extends Enemy implements Runnable{
         
 	public Enemy2(Board brd,int startx, int starty) {
-		super(brd,3,"e3l",".png",startx,starty,"Enemy_Hit");
+		super(brd,3,"e3l",".png",startx,starty,"Enemy_Hit",15,15);
+                
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
@@ -19,7 +20,7 @@ public class Enemy2 extends Enemy implements Runnable{
                     marrayX[x]=-3;     
                 }
                 
-                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500);
+              //  ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500,_pwidth,_pheight);
                 
              //   Thread enemythread=new Thread(this);
              //   enemythread.start();
