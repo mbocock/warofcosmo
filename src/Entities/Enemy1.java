@@ -6,8 +6,11 @@ import projectiles.ProjectileSpawner;
 
 public class Enemy1 extends Enemy implements Runnable{
         
+    
+    
 	public Enemy1(Board brd,int startx, int starty) {
-		super(brd,1,"er",".png",startx,starty,"Enemy_Hit",20);
+
+		super(brd,1,"er",".png",startx,starty,"Enemy_Hit",5,5,10);
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
@@ -15,7 +18,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 
                 fillDeathCycleImages("death",".png",4);
 				
-		ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1000);
+		//ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1000,_pwidth,_pheight);
                 
                 for(int x=0;x<200;x++){
                     
