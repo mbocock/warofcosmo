@@ -135,7 +135,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                 
                 g.drawString("SCORE: "+ String.format("%0"+ _zeroes +"d",_score),10,30);
                     
-		drawProjectiles(g2d);
+		//drawProjectiles(g2d);
                 
                 for(int i=0; i<Enemies.size();i++){
                     Enemy en=((Enemy)Enemies.get(i));
@@ -156,6 +156,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
                     if(en.getHealth() <=0){
 			//kill enemies projectile spawning thread and remove enemy
                         en.getProjectileThread().interrupt();
+                        en.getProjectileThread2().interrupt();
                         if(en.death()){
                             Enemies.remove(en);
                             _score=_score+en.getpoints();
@@ -184,11 +185,14 @@ public class Board extends JPanel implements Runnable, KeyListener {
 				if(e.getHealth() <=0){
                                     //kill enemies projectile spawning thread and remove enemy
                                     e.getProjectileThread().interrupt();
+                                    e.getProjectileThread2().interrupt();
 				}
 			}
                     }
 
                 }
+                
+                drawProjectiles(g2d);
         }
 		
 	private void restartLevel(){
@@ -203,6 +207,7 @@ public class Board extends JPanel implements Runnable, KeyListener {
 		for (int i = 0; i < Enemies.size(); i++) {
 			AbstractEntity e = Enemies.get(i);
 			e.getProjectileThread().interrupt();
+                        e.getProjectileThread2().interrupt();
 		}
 					
                         Enemies.removeAll(Enemies);

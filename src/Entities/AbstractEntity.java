@@ -26,6 +26,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int curhealth;
 	protected ArrayList<ImageIcon> _staticimg;
 	protected Thread _projectileThread;
+        protected Thread _projectileThread2;
 	public ArrayList<ImageIcon> _shipimg;
         public ArrayList<ImageIcon> _deathimg;
 	private int maxhealth=20;
@@ -34,12 +35,13 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         private final AudioClip _deathFX;
         protected int _points=50;
 	
-	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String DeathWav){
+	public AbstractEntity(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String DeathWav, int inmaxHealth){
 		
 		_shipimg = new ArrayList<ImageIcon>();
                 _deathimg = new ArrayList<ImageIcon>();
                 _x=startx;
                 _y=starty;
+                maxhealth=inmaxHealth;
 		fillCycleImages(imgname,imgextension,imgcount);	
                 fillDeathCycleImages("death",".png",4);
 		_board = brd;
@@ -47,7 +49,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
                 URL urlClick = Player.class.getResource("/"+DeathWav+".wav");
                 _deathFX = Applet.newAudioClip(urlClick);
 	}
-	
+
 	protected void fillCycleImages(String imgname,String imgextension,int imgcount){
            
 		for(int i = 0; i < imgcount; i++){
@@ -109,6 +111,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 
 	@Override
 	public int getMaxHealth() {return maxhealth;}
+        public void setMaxHealth(int health) {maxhealth=health;}
 
 	@Override
 	public Image getImage() {return _gfx;}
@@ -146,6 +149,10 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	public void setProjectileThread(Thread pthread){_projectileThread = pthread;}
 	@Override
 	public Thread getProjectileThread(){return _projectileThread; }
+        	
+	public void setProjectileThread2(Thread pthread){_projectileThread2 = pthread;}
+	
+	public Thread getProjectileThread2(){return _projectileThread2; }
         @Override
 	public void setDeath(int n) {
             _gfx=_deathimg.get(n).getImage();

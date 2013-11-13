@@ -16,8 +16,8 @@ public abstract class Enemy extends AbstractEntity implements Runnable{
         int count=0;
         int leave=0;
         
-	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String deathwav) {
-		super(brd,imgcount,imgname,imgextension,startx,starty,deathwav);
+	public Enemy(Board brd,int imgcount, String imgname, String imgextension,int startx, int starty,String deathwav,int health) {
+		super(brd,imgcount,imgname,imgextension,startx,starty,deathwav,health);
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;

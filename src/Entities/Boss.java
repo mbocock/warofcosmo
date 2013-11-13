@@ -4,22 +4,22 @@ import com.warofcosmo.cosmo.Board;
 import java.awt.event.ActionEvent;
 import projectiles.ProjectileSpawner;
 
-public class Enemy2 extends Enemy implements Runnable{
+public class Boss extends Enemy implements Runnable{
         
-	public Enemy2(Board brd,int startx, int starty) {
-		super(brd,3,"e3l",".png",startx,starty,"Enemy_Hit",30);
+	public Boss(Board brd,int startx, int starty) {
+		super(brd,3,"GrumpyBoss",".png",startx,starty,"Enemy_Hit",50);
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
-                _points=150;
+                _points=550;
+//                for(int x=0;x<200;x++){
+//                    marrayY[x]=0;
+//
+//                    marrayX[x]=-3;     
+//                }
                 
-                for(int x=0;x<200;x++){
-                    marrayY[x]=0;
-
-                    marrayX[x]=-3;     
-                }
-                
-                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500);
+                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1300,650,380);
+                ProjectileSpawner _projSpawner2 = new ProjectileSpawner(this,1300,750,420);
                 
              //   Thread enemythread=new Thread(this);
              //   enemythread.start();
@@ -34,13 +34,13 @@ public class Enemy2 extends Enemy implements Runnable{
           //_x = _x + -1;
           //_y = _y + dy;
 
-                _x = _x + marrayX[step];
+          //_x = _x + marrayX[step];
           
-          if(count<230){
-            _y = _y + marrayY[step];
-          }else{
-            _y = _y + -1;
-          }
+//          if(count<230){
+//            _y = _y + marrayY[step];
+//          }else{
+//            _y = _y + -1;
+//          }
           
           step++;
           
