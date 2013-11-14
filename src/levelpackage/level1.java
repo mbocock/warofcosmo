@@ -31,9 +31,10 @@ public class level1 extends AbstractLevel{
       
                 if(_dx-px<=-_length && _isBoss==0){
                     _speed=0;
+                    _isBoss=1;
                     _brd.stopBGM(as);
                     _brd.addEnemy(new Boss(_brd,px-450,300));
-                    _isBoss=1;
+                    
                     //_brd.playBGM(bs);
                     // _brd.LoadNext();
 		}

@@ -3,7 +3,6 @@ package Entities;
 import com.warofcosmo.cosmo.Board;
 import java.awt.event.ActionEvent;
 import projectiles.ProjectileSpawner;
-
 public class Boss extends Enemy implements Runnable{
         
 	public Boss(Board brd,int startx, int starty) {
@@ -18,9 +17,11 @@ public class Boss extends Enemy implements Runnable{
 //                    marrayX[x]=-3;     
 //                }
                 
-                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,1300,650,380);
-                ProjectileSpawner _projSpawner2 = new ProjectileSpawner(this,1300,750,420);
-                
+                System.out.println("SPAWNING GUNS");
+                ProjectileSpawner _projSpawner = new ProjectileSpawner(this,500,5,5,650,380,true);
+                System.out.println("SPAWNING GUNS2");
+                ProjectileSpawner _projSpawner2 = new ProjectileSpawner(this,500,5,5,750,420,true);
+                System.out.println("DONE");
              //   Thread enemythread=new Thread(this);
              //   enemythread.start();
                 

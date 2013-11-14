@@ -25,8 +25,8 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 	protected int _dx;
 	protected int curhealth;
 	protected ArrayList<ImageIcon> _staticimg;
-	protected Thread _projectileThread;
-        protected Thread _projectileThread2;
+	//protected Thread _projectileThread;
+        protected ArrayList<Thread> _projectileThread;
 	public ArrayList<ImageIcon> _shipimg;
         public ArrayList<ImageIcon> _deathimg;
 	private int maxhealth=20;
@@ -47,6 +47,7 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
 		fillCycleImages(imgname,imgextension,imgcount);	
                 fillDeathCycleImages("death",".png",4);
 		_board = brd;
+                _projectileThread=new ArrayList();
                 curhealth=maxhealth;
                 URL urlClick = Player.class.getResource("/"+DeathWav+".wav");
                 _deathFX = Applet.newAudioClip(urlClick);
@@ -151,13 +152,16 @@ public abstract class AbstractEntity implements ActionListener,IEntity{
         @Override
 	public void setHealth(int hit){curhealth=curhealth-hit;}
 	@Override	
-	public void setProjectileThread(Thread pthread){_projectileThread = pthread;}
-	@Override
-	public Thread getProjectileThread(){return _projectileThread; }
-        	
-	public void setProjectileThread2(Thread pthread){_projectileThread2 = pthread;}
-	
-	public Thread getProjectileThread2(){return _projectileThread2; }
+	public void setProjectileThread(Thread pthread){
+            _projectileThread.add(pthread);
+            System.out.println("THREAD ADDED");
+        }
+        
+        public void killProjectileThread(){
+            for (int i = 0; i < _projectileThread.size(); i++) {
+                _projectileThread.get(i).interrupt();
+            }
+        }
         @Override
 	public void setDeath(int n) {
             _gfx=_deathimg.get(n).getImage();

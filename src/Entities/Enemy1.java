@@ -10,7 +10,7 @@ public class Enemy1 extends Enemy implements Runnable{
     
 	public Enemy1(Board brd,int startx, int starty) {
 
-		super(brd,1,"er",".png",startx,starty,"Enemy_Hit",5,5,10);
+		super(brd,1,"er",".png",startx,starty,"Enemy_Hit",10);
                 _speed=-1;
                 _startX=startx;
                 _startY=starty;
